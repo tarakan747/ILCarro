@@ -7,11 +7,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -25,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     Toolbar toolbar;
     MenuItem searchItem;
+    EditText location, from, till;
+    Button yalla;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
 
+        location = findViewById(R.id.inputLocation);
+        from = findViewById(R.id.inputFrom);
+        till = findViewById(R.id.inputTill);
+
+        yalla = findViewById(R.id.yallaBtnMain);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -43,6 +54,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        yalla.setOnClickListener(v -> {
+            String a = location.getText().toString();
+            String b = from.getText().toString();
+            String c = till.getText().toString();
+            Toast.makeText(this, a + " " + b + " " + c, Toast.LENGTH_LONG).show();
+        });
     }
 
     @Override
@@ -83,7 +101,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Favorites", Toast.LENGTH_LONG).show();
                 break;
             case R.id.nav_login:
-                Toast.makeText(this, "Login", Toast.LENGTH_LONG).show();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.drawer_layout, new LoginFragment())
+                        .addToBackStack(null)
+                        .commit();
+                drawerLayout.closeDrawer((GravityCompat.START));
                 break;
             case R.id.nav_sign_up:
                 Toast.makeText(this, "Sign up", Toast.LENGTH_LONG).show();
