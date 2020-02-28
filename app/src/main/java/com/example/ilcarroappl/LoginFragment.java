@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -17,7 +18,8 @@ import android.widget.Toast;
  */
 public class LoginFragment extends Fragment {
     EditText email, password;
-    Button yalla;
+    Button yalla, close, signUp;
+    TextView click;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -29,10 +31,22 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         email = view.findViewById(R.id.inputEmail);
+        click = view.findViewById(R.id.click_frag);
         password = view.findViewById(R.id.inputPassword);
         yalla = view.findViewById(R.id.yallaBtnFrag);
+        close = view.findViewById(R.id.close_btn_login_frag);
+        signUp = view.findViewById(R.id.signUpBtnFrag);
+
         yalla.setOnClickListener(v -> {
-            Toast.makeText(view.getContext(), password.getText().toString(), Toast.LENGTH_LONG).show();
+            //TODO
+        });
+
+        signUp.setOnClickListener(v -> {
+            //TODO
+        });
+
+        close.setOnClickListener(v -> {
+            //TODO
         });
         return view;
     }

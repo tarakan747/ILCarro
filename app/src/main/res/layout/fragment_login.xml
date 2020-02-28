@@ -134,7 +134,7 @@
         app:layout_constraintTop_toBottomOf="@+id/yallaBtnFrag" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/click_frag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -147,7 +147,7 @@
         app:lineHeight="@dimen/cardview_default_radius" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/close_btn_login_frag"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
