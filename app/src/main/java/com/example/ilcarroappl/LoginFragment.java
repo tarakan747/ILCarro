@@ -1,5 +1,6 @@
 package com.example.ilcarroappl;
 
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -31,11 +32,12 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         email = view.findViewById(R.id.inputEmail);
-        click = view.findViewById(R.id.click_frag);
         password = view.findViewById(R.id.inputPassword);
         yalla = view.findViewById(R.id.yallaBtnFrag);
         close = view.findViewById(R.id.close_btn_login_frag);
         signUp = view.findViewById(R.id.signUpBtnFrag);
+        click = (TextView) view.findViewById(R.id.click_frag);
+        click.setPaintFlags(click.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         yalla.setOnClickListener(v -> {
             //TODO
