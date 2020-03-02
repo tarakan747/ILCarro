@@ -73,7 +73,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.search) {
-            Toast.makeText(this, "Search logo", Toast.LENGTH_LONG).show();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.drawer_layout, new SearchFragment())
+                    .addToBackStack(null)
+                    .commit();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -109,7 +113,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawerLayout.closeDrawer((GravityCompat.START));
                 break;
             case R.id.nav_sign_up:
-                Toast.makeText(this, "Sign up", Toast.LENGTH_LONG).show();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.drawer_layout, new RegistrationFragment())
+                        .addToBackStack(null)
+                        .commit();
+                drawerLayout.closeDrawer((GravityCompat.START));
                 break;
             case R.id.nav_terms_of_use:
                 Toast.makeText(this, "Terms of use", Toast.LENGTH_LONG).show();

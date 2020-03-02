@@ -44,7 +44,11 @@ public class LoginFragment extends Fragment {
         });
 
         signUp.setOnClickListener(v -> {
-            //TODO
+            getFragmentManager()
+                    .beginTransaction()
+                    .remove(this)
+                    .replace(R.id.drawer_layout, new RegistrationFragment())
+                    .commit();
         });
 
         close.setOnClickListener(v -> {
