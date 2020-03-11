@@ -15,7 +15,11 @@ import android.view.ViewGroup;
 public class SearchFragment extends Fragment {
 
     public SearchFragment() {
+<<<<<<< HEAD
 
+=======
+        // Pidaras
+>>>>>>> 5cc593d537ccdb36e774197f588103f410c80abb
     }
 
     @Override
