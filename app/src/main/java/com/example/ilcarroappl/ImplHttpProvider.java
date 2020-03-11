@@ -5,14 +5,18 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.ilcarroappl.dto.CarDto;
+import com.example.ilcarroappl.dto.CarListDto;
 import com.example.ilcarroappl.dto.ErrorDto;
 import com.example.ilcarroappl.dto.RegistrationDto;
 import com.example.ilcarroappl.dto.UserBaseDto;
+import com.example.ilcarroappl.dto.UserCarDto;
 import com.example.ilcarroappl.dto.UserDto;
 import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
@@ -73,6 +77,54 @@ public class ImplHttpProvider implements HttpProvider{
         }
     }
 
+    public List<CarDto> topCar() throws IOException {
+        Request request = new Request.Builder()
+                .url(BASE_URL + "/car/best")
+                .get()
+                .build();
+
+        Response response = client.newCall(request).execute();
+        if (response.isSuccessful()){
+            String json = response.body().string();
+            CarListDto dto = gson.fromJson(json, CarListDto.class);
+            return dto.getCars();
+        } else if(response.code() == 404){
+            String json = response.body().string();
+            ErrorDto errorDto = gson.fromJson(json, ErrorDto.class);
+            throw new RuntimeException(errorDto.getMessage());
+        }else {
+            String json = response.body().string();
+            Log.d("MY_TAG", "topCar: " + json);
+            throw new RuntimeException("Server error! Call to support!");
+        }
+    }
+
+    public CarDto addNewCar(String token, UserCarDto carDto) throws IOException {
+        String json = gson.toJson(carDto);
+
+        RequestBody requestBody = RequestBody.create(JSON, json);
+        Request request = new Request.Builder()
+                .url(BASE_URL + "/car")
+                .post(requestBody)
+                .addHeader("Authorization", token)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        if (response.isSuccessful()){
+            json = response.body().string();
+            CarDto dto = gson.fromJson(json, CarDto.class);
+            return dto;
+        }else if (response.code() == 400 || response.code() == 401){
+            json = response.body().string();
+            ErrorDto errorDto = gson.fromJson(json, ErrorDto.class);
+            throw new RuntimeException(errorDto.getMessage());
+        }else {
+            json = response.body().string();
+            Log.d("MY_TAG", "addNewCar: " + json);
+            throw new RuntimeException("Server error! Call to support!");
+        }
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public String login(String email, String password) throws IOException {
         String token = Base64.getEncoder().encodeToString((email + ":" + password).getBytes());
@@ -98,7 +150,7 @@ public class ImplHttpProvider implements HttpProvider{
         }
     }
 
-    public String updatePassword(String token, UserBaseDto user) throws IOException {
+    public String updateUser(String token, UserBaseDto user) throws IOException {
         String json = gson.toJson(user);
         RequestBody requestBody = RequestBody.create(JSON, json);
 
