@@ -32,7 +32,7 @@ import java.util.jar.Attributes;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MY_TAG";
-    ImplHttpProvider httpProvider = new ImplHttpProvider();
+//    ImplHttpProvider httpProvider = new ImplHttpProvider();
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -201,7 +201,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         protected List<CarDto> doInBackground(Void... voids) {
             String res = "OK!!!!!!!!!!!";
             try {
-                list = httpProvider.topCar();
+//                list = httpProvider.topCar();
+                list = ImplHttpProvider.getInstance().topCar();
                 Log.d(TAG, "doInBackground: " + list.size());
             } catch (IOException e) {
                 res = "Error";

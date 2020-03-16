@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 public class SearchFragment extends Fragment {
 
     public SearchFragment() {
-
     }
 
     @Override

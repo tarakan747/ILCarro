@@ -1,8 +1,8 @@
 package com.example.ilcarroappl.dto;
 
 public class PickUpPlaceDto {
-    Double latitude;
-    Double longitude;
+    double latitude;
+    double longitude;
     String place_id;
 
     @Override
@@ -14,11 +14,11 @@ public class PickUpPlaceDto {
                 '}';
     }
 
-    public Double getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public Double getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
@@ -26,7 +26,7 @@ public class PickUpPlaceDto {
         return place_id;
     }
 
-    public PickUpPlaceDto(Double latitude, Double longitude, String place_id) {
+    public PickUpPlaceDto(double latitude, double longitude, String place_id) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.place_id = place_id;

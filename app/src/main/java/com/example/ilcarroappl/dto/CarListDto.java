@@ -1,8 +1,11 @@
 package com.example.ilcarroappl.dto;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class CarListDto {
+    @SerializedName("")
     List<CarDto> cars;
 
     public CarListDto() {

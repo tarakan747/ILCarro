@@ -1,7 +1,8 @@
 package com.example.ilcarroappl.dto;
 
 public class ReservedPeriodDto {
-    String end_date_time, start_date_time;
+    String end_date_time;
+    String start_date_time;
 
     public ReservedPeriodDto() {
     }
