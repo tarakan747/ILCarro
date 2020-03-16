@@ -25,7 +25,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class ImplHttpProvider implements HttpProvider{
+public class ImplHttpProvider implements HttpProvider {
     public static final String BASE_URL = "https://java-3-ilcarro-team-b.herokuapp.com";
     public static final ImplHttpProvider ourInstance = new ImplHttpProvider();
     private Gson gson;
@@ -33,9 +33,11 @@ public class ImplHttpProvider implements HttpProvider{
     private OkHttpClient client;
     private StoreProvider storeProvider;
 
-    public static ImplHttpProvider getInstance(){return ourInstance;}
+    public static ImplHttpProvider getInstance() {
+        return ourInstance;
+    }
 
-    private ImplHttpProvider(){
+    ImplHttpProvider() {
         gson = new Gson();
         JSON = MediaType.get("application/json; charset=utf-8");
         client = new OkHttpClient.Builder()
@@ -62,15 +64,15 @@ public class ImplHttpProvider implements HttpProvider{
                 .build();
         Response response = client.newCall(request).execute();
         Log.d("MY_TAG", "registration: code" + response.code());
-        if (response.isSuccessful()){
+        if (response.isSuccessful()) {
             json = response.body().string();
             UserDto user = gson.fromJson(json, UserDto.class);
             return user;
-        }else if (response.code() == 400 || response.code() == 403 || response.code() == 409){
+        } else if (response.code() == 400 || response.code() == 403 || response.code() == 409) {
             json = response.body().string();
             ErrorDto error = gson.fromJson(json, ErrorDto.class);
             throw new RuntimeException(error.getMessage());
-        }else {
+        } else {
             json = response.body().string();
             Log.d("MY_TAG", "registration: " + json);
             throw new RuntimeException("Server error! Call to support!");
@@ -84,17 +86,20 @@ public class ImplHttpProvider implements HttpProvider{
                 .build();
 
         Response response = client.newCall(request).execute();
-        if (response.isSuccessful()){
+        Log.d("MY_TAG", "topCar: " + "\n" + response.code());
+
+        if (response.code() == 200) {
             String json = response.body().string();
+            Log.d("MY_TAG", "topCar: " + json);
             CarListDto dto = gson.fromJson(json, CarListDto.class);
+            Log.d("MY_TAG", "topCar222: \n" + json + "\n" + dto.toString());
             return dto.getCars();
-        } else if(response.code() == 404){
+        } else if (response.code() == 404) {
             String json = response.body().string();
             ErrorDto errorDto = gson.fromJson(json, ErrorDto.class);
             throw new RuntimeException(errorDto.getMessage());
-        }else {
+        } else {
             String json = response.body().string();
-            Log.d("MY_TAG", "topCar: " + json);
             throw new RuntimeException("Server error! Call to support!");
         }
     }
@@ -110,15 +115,15 @@ public class ImplHttpProvider implements HttpProvider{
                 .build();
 
         Response response = client.newCall(request).execute();
-        if (response.isSuccessful()){
+        if (response.isSuccessful()) {
             json = response.body().string();
             CarDto dto = gson.fromJson(json, CarDto.class);
             return dto;
-        }else if (response.code() == 400 || response.code() == 401){
+        } else if (response.code() == 400 || response.code() == 401) {
             json = response.body().string();
             ErrorDto errorDto = gson.fromJson(json, ErrorDto.class);
             throw new RuntimeException(errorDto.getMessage());
-        }else {
+        } else {
             json = response.body().string();
             Log.d("MY_TAG", "addNewCar: " + json);
             throw new RuntimeException("Server error! Call to support!");
@@ -135,15 +140,15 @@ public class ImplHttpProvider implements HttpProvider{
                 .build();
         Log.d("MY_TAG", "login: " + token);
         Response response = client.newCall(request).execute();
-        if (response.isSuccessful()){
+        if (response.isSuccessful()) {
             String json = response.body().string();
             UserDto user = gson.fromJson(json, UserDto.class);
             return "Login ok!";
-        }else if (response.code() == 400 || response.code() == 401 || response.code() == 404){
+        } else if (response.code() == 400 || response.code() == 401 || response.code() == 404) {
             String json = response.body().string();
             ErrorDto error = gson.fromJson(json, ErrorDto.class);
             throw new RuntimeException(error.getMessage());
-        }else {
+        } else {
             String json = response.body().string();
             Log.d("MY_TAG", "registration: " + json);
             throw new RuntimeException("Server error! Call to support!");
@@ -160,13 +165,13 @@ public class ImplHttpProvider implements HttpProvider{
                 .put(requestBody)
                 .build();
         Response response = client.newCall(request).execute();
-        if (response.isSuccessful()){
+        if (response.isSuccessful()) {
             return "Update ok!";
-        }else if (response.code() == 400 || response.code() == 401 || response.code() == 404){
+        } else if (response.code() == 400 || response.code() == 401 || response.code() == 404) {
             json = response.body().string();
             ErrorDto errorDto = gson.fromJson(json, ErrorDto.class);
             throw new RuntimeException(errorDto.getMessage());
-        }else {
+        } else {
             json = response.body().string();
             Log.d("MY_TAG", "updatePassword: " + json);
             throw new RuntimeException("Server error! Call to support.");
@@ -188,13 +193,13 @@ public class ImplHttpProvider implements HttpProvider{
                 .build();
 
         Response response = client.newCall(request).execute();
-        if (response.isSuccessful()){
+        if (response.isSuccessful()) {
             return "Password is changed.";
-        }else if (response.code() == 400 || response.code() == 401 || response.code() == 404){
+        } else if (response.code() == 400 || response.code() == 401 || response.code() == 404) {
             json = response.body().string();
             ErrorDto errorDto = gson.fromJson(json, ErrorDto.class);
             throw new RuntimeException(errorDto.getMessage());
-        }else {
+        } else {
             json = response.body().string();
             Log.d("MY_TAG", "updatePassword: " + json);
             throw new RuntimeException("Server error! Call to support");
@@ -209,13 +214,13 @@ public class ImplHttpProvider implements HttpProvider{
                 .build();
 
         Response response = client.newCall(request).execute();
-        if (response.isSuccessful()){
+        if (response.isSuccessful()) {
             return "User delete.";
-        }else if (response.code() == 400 || response.code() == 401 || response.code() == 404){
+        } else if (response.code() == 400 || response.code() == 401 || response.code() == 404) {
             String json = response.body().string();
             ErrorDto errorDto = gson.fromJson(json, ErrorDto.class);
             throw new RuntimeException(errorDto.getMessage());
-        }else {
+        } else {
             String json = response.body().string();
             Log.d("MY_TAG", "deleteUser: " + json);
             throw new RuntimeException("Server error! Call to support");

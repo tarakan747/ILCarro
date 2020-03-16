@@ -207,6 +207,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
                 <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/bestCarsVP"
                     android:layout_width="0dp"
                     android:layout_height="300dp"
                     android:layout_marginStart="15dp"
@@ -216,7 +217,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView14" >
+                </androidx.viewpager.widget.ViewPager>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
