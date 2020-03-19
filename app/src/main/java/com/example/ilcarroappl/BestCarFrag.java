@@ -16,9 +16,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ilcarroappl.data.dto.CarForUsersDto;
 import com.example.ilcarroappl.dto.CarDto;
 import com.example.ilcarroappl.dto.CarListDto;
-import com.squareup.picasso.Picasso;
+
 
 import java.io.InputStream;
 import java.util.List;
@@ -40,15 +41,17 @@ public class BestCarFrag extends Fragment {
     }
 
 
-    public static Fragment of(List<CarDto> bestCar, int pos) {
+    public static Fragment of(List<CarForUsersDto> bestCar, int pos) {
         BestCarFrag fragment = new BestCarFrag();
-        CarDto car = bestCar.get(pos);
+        CarForUsersDto car = bestCar.get(pos);
+        Log.d("MY_TAG", "of: +" + car.toString());
         nameCar = car.getMake() + " " + car.getModel() + " " + car.getYear();
-        priceCar = car.getPrice_per_day() + " $/day";
+        priceCar = car.getPricePerDay() + " $/day";
         seat = car.getSeats() + "";
         doors = car.getDoors() + "";
-        List<String> img = car.getImage_url();
+        List<String> img = car.getImageUrl();
         imgUrl = img.get(0);
+        Log.d("MY_TAG", "of: " + imgUrl);
         manual = car.getGear();
         return fragment;
     }
@@ -58,13 +61,13 @@ public class BestCarFrag extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_best_car, container, false);
         init(view);
-
+        new DownloadImageTask(photoCar).execute(imgUrl);
         nameCarTxt.setText(nameCar);
         priceCarTxt.setText(priceCar);
         seatTxt.setText(seat);
         doorsTxt.setText(doors);
         manualTxt.setText(manual);
-        new DownloadImageTask(photoCar).execute(imgUrl);
+
         return view;
     }
 
@@ -87,6 +90,7 @@ class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
     protected Bitmap doInBackground(String... urls) {
         String urldisplay = urls[0];
+        Log.d("MY_TAG", "doInBackground: " + urldisplay);
         Bitmap mIcon11 = null;
         try {
             InputStream in = new java.net.URL(urldisplay).openStream();

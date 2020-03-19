@@ -15,6 +15,7 @@ import com.example.ilcarroappl.dto.UserDto;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.Base64;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -28,6 +29,7 @@ import okhttp3.Response;
 public class ImplHttpProvider implements HttpProvider {
     public static final String BASE_URL = "https://java-3-ilcarro-team-b.herokuapp.com";
     public static final ImplHttpProvider ourInstance = new ImplHttpProvider();
+    private static final String TAG = "MY_TAG";
     private Gson gson;
     private MediaType JSON;
     private OkHttpClient client;
@@ -86,20 +88,23 @@ public class ImplHttpProvider implements HttpProvider {
                 .build();
 
         Response response = client.newCall(request).execute();
-        Log.d("MY_TAG", "topCar: " + "\n" + response.code());
+        Log.d("MY_TAG", "topCar: " + response.code());
 
         if (response.code() == 200) {
             String json = response.body().string();
-            Log.d("MY_TAG", "topCar: " + json);
-            CarListDto dto = gson.fromJson(json, CarListDto.class);
-            Log.d("MY_TAG", "topCar222: \n" + json + "\n" + dto.toString());
-            return dto.getCars();
+            Log.d("MY_TAG", "topCar1: " + json);
+            CarDto[] dto = gson.fromJson(json, (Type) CarDto.class);
+            Log.d(TAG, "topCar: 1234" + dto.length);
+
+            return null;
         } else if (response.code() == 404) {
             String json = response.body().string();
+            Log.e(TAG, "topCar: " + json);
             ErrorDto errorDto = gson.fromJson(json, ErrorDto.class);
             throw new RuntimeException(errorDto.getMessage());
         } else {
             String json = response.body().string();
+            Log.e(TAG, "topCar: " + json);
             throw new RuntimeException("Server error! Call to support!");
         }
     }

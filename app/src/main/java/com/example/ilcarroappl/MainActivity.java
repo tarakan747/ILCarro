@@ -8,31 +8,32 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ilcarroappl.adapters.ViewPagerAdapters;
+import com.example.ilcarroappl.data.dto.CarForUsersDto;
+import com.example.ilcarroappl.data.provider.web.Api;
 import com.example.ilcarroappl.dto.CarDto;
-import com.example.ilcarroappl.dto.CarListDto;
 import com.google.android.material.navigation.NavigationView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Attributes;
+import java.util.concurrent.atomic.AtomicReference;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MY_TAG";
-//    ImplHttpProvider httpProvider = new ImplHttpProvider();
+    //    ImplHttpProvider httpProvider = new ImplHttpProvider();
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         init();
         toolbarSetting();
         navigationSetting();
+        viewPagerStart();
 
         yalla.setOnClickListener(v -> {
             String a = location.getText().toString();
@@ -56,30 +58,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(this, a + " " + b + " " + c, Toast.LENGTH_LONG).show();
         });
 
-        new GetListBestCars().execute();
 
         bestCars.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                Log.d("MY_TAG", "onPageScrolled() called with: position = [" + position + "], positionOffset = [" + positionOffset + "], positionOffsetPixels = [" + positionOffsetPixels + "]");
+//               Log.d("MY_TAG", "onPageScrolled() called with: position = [" + position + "], positionOffset = [" + positionOffset + "], positionOffsetPixels = [" + positionOffsetPixels + "]");
             }
 
             @Override
             public void onPageSelected(int position) {
-                Log.d("MY_TAG", "onPageSelected() called with: position = [" + position + "]");
+      //          Log.d("MY_TAG", "onPageSelected() called with: position = [" + position + "]");
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
                 switch (state) {
                     case ViewPager.SCROLL_STATE_IDLE:
-                        Log.d("MY_TAG", "onPageScrollStateChanged: IDLE");
+
                         break;
                     case ViewPager.SCROLL_STATE_DRAGGING:
-                        Log.d("MY_TAG", "onPageScrollStateChanged: DRAGGING");
+
                         break;
                     case ViewPager.SCROLL_STATE_SETTLING:
-                        Log.d("MY_TAG", "onPageScrollStateChanged: SETTLING");
+
                         break;
 
                 }
@@ -87,11 +88,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
-    private void viewPagerStart(List<CarDto> list) {
-        ViewPagerAdapters adapter = new ViewPagerAdapters(getSupportFragmentManager(), list);
-        bestCars.setAdapter(adapter);
-        bestCars.setOffscreenPageLimit(2);
-
+    private void viewPagerStart() {
+        Api api = ApiProvider.getInstance().getApi();
+        Disposable disposable = api.topCar()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((response, error) -> {
+                    if (response != null) {
+                        if (response.isSuccessful()) {
+                            List<CarForUsersDto> list = new ArrayList<>(response.body());
+                            ViewPagerAdapters adapter = new ViewPagerAdapters(getSupportFragmentManager(), list);
+                            bestCars.setAdapter(adapter);
+                            bestCars.setOffscreenPageLimit(2);
+                        } else {
+                            Log.d(TAG, "test3: " + response.errorBody().string());
+                        }
+                    } else if (error != null) {
+                        error.printStackTrace();
+                    }
+                });
     }
 
     private void navigationSetting() {
@@ -189,41 +204,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    class GetListBestCars extends AsyncTask<Void, Void, List<CarDto>> {
-        List<CarDto> list = new ArrayList<>();
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected List<CarDto> doInBackground(Void... voids) {
-            String res = "OK!!!!!!!!!!!";
-            try {
-//                list = httpProvider.topCar();
-                list = ImplHttpProvider.getInstance().topCar();
-                Log.d(TAG, "doInBackground: " + list.size());
-            } catch (IOException e) {
-                res = "Error";
-                Log.d(TAG, "doInBackground1: " + e + res);
-                e.printStackTrace();
-            } catch (RuntimeException e) {
-                res = "Error1";
-                Log.d(TAG, "doInBackground2: " + e + res);
-
-                e.printStackTrace();
-            }
-            Log.d(TAG, "doInBackground: " + list.size());
-            return list;
-        }
-
-        @Override
-        protected void onPostExecute(List<CarDto> listDto) {
-            super.onPostExecute(listDto);
-            viewPagerStart(list);
-        }
-    }
 }
 
 

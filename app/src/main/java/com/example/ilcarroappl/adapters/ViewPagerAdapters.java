@@ -1,29 +1,23 @@
 package com.example.ilcarroappl.adapters;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.ilcarroappl.BestCarFrag;
-import com.example.ilcarroappl.R;
-import com.example.ilcarroappl.dto.CarDto;
-import com.example.ilcarroappl.dto.CarListDto;
+import com.example.ilcarroappl.data.dto.CarForUsersDto;
+
 
 import java.util.List;
 
 public class ViewPagerAdapters extends FragmentStatePagerAdapter {
-    List<CarDto> bestCar;
+    List<CarForUsersDto> bestCar;
 
-    public ViewPagerAdapters(@NonNull FragmentManager fm, List<CarDto> bestCar) {
+    public ViewPagerAdapters(@NonNull FragmentManager fm, List<CarForUsersDto> bestCar) {
         super(fm);
+        this.bestCar = bestCar;
+
     }
 
     @NonNull

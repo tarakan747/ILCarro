@@ -1,32 +1,59 @@
 package com.example.ilcarroappl.dto;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class CarDto {
+    @SerializedName("about")
     String about;
+    @SerializedName("booked_periods")
     List<BookedPeriodsDto> booked_periods;
+    @SerializedName("car_class")
     String car_class;
+    @SerializedName("comments")
     List<CommentsDto> comments;
+    @SerializedName("distance_included")
     double distance_included;
+    @SerializedName("doors")
     int doors;
+    @SerializedName("engine")
     String engine;
+    @SerializedName("features")
     List<String> features;
+    @SerializedName("fuel")
     String fuel;
+    @SerializedName("fuel_consumption")
     float fuel_consumption;
+    @SerializedName("name")
     String gear;
+    @SerializedName("gear")
     int horsepower;
+    @SerializedName("image_url")
     List<String> image_url;
+    @SerializedName("make")
     String make;
+    @SerializedName("model")
     String model;
+    @SerializedName("owner")
     List<OwnerDto> owner;
+    @SerializedName("pick_up_place")
     List<PickUpPlaceDto> pick_up_place;
+    @SerializedName("price_per_day")
     double price_per_day;
+    @SerializedName("reserved_periods")
     List<ReservedPeriodDto> reserved_periods;
+    @SerializedName("seats")
     int seats;
+    @SerializedName("serial_number")
     String serial_number;
+    @SerializedName("statistics")
     List<StatisticsDto> statistics;
+    @SerializedName("torque")
     int torque;
+    @SerializedName("wheels_drive")
     String wheels_drive;
+    @SerializedName("year")
     String year;
 
     public CarDto() {
