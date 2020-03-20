@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onPageSelected(int position) {
-      //          Log.d("MY_TAG", "onPageSelected() called with: position = [" + position + "]");
+                //          Log.d("MY_TAG", "onPageSelected() called with: position = [" + position + "]");
             }
 
             @Override
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             List<CarForUsersDto> list = new ArrayList<>(response.body());
                             ViewPagerAdapters adapter = new ViewPagerAdapters(getSupportFragmentManager(), list);
                             bestCars.setAdapter(adapter);
-                            bestCars.setOffscreenPageLimit(2);
+                            bestCars.setOffscreenPageLimit(3);
                         } else {
                             Log.d(TAG, "test3: " + response.errorBody().string());
                         }

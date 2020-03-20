@@ -19,12 +19,14 @@ import android.widget.TextView;
 import com.example.ilcarroappl.data.dto.CarForUsersDto;
 import com.example.ilcarroappl.dto.CarDto;
 import com.example.ilcarroappl.dto.CarListDto;
+import com.squareup.picasso.Picasso;
 
 
 import java.io.InputStream;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
 
 
 /**
@@ -44,11 +46,10 @@ public class BestCarFrag extends Fragment {
     public static Fragment of(List<CarForUsersDto> bestCar, int pos) {
         BestCarFrag fragment = new BestCarFrag();
         CarForUsersDto car = bestCar.get(pos);
-        Log.d("MY_TAG", "of: +" + car.toString());
         nameCar = car.getMake() + " " + car.getModel() + " " + car.getYear();
         priceCar = car.getPricePerDay() + " $/day";
-        seat = car.getSeats() + "";
-        doors = car.getDoors() + "";
+        seat = car.getSeats().toString();
+        doors = car.getDoors().toString();
         List<String> img = car.getImageUrl();
         imgUrl = img.get(0);
         Log.d("MY_TAG", "of: " + imgUrl);
@@ -61,7 +62,8 @@ public class BestCarFrag extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_best_car, container, false);
         init(view);
-        new DownloadImageTask(photoCar).execute(imgUrl);
+        Log.d("MY_TAG", "onCreateView: " + imgUrl);
+        Picasso.get().load(imgUrl).into(photoCar);
         nameCarTxt.setText(nameCar);
         priceCarTxt.setText(priceCar);
         seatTxt.setText(seat);
@@ -72,36 +74,13 @@ public class BestCarFrag extends Fragment {
     }
 
     private void init(View view) {
+        photoCar = view.findViewById(R.id.photoCarImg);
         nameCarTxt = view.findViewById(R.id.nameCarTxt);
         priceCarTxt = view.findViewById(R.id.priceCarTxt);
         seatTxt = view.findViewById(R.id.seatTxt);
         doorsTxt = view.findViewById(R.id.doorsTxt);
         manualTxt = view.findViewById(R.id.manualTxt);
-        photoCar = view.findViewById(R.id.photoCarImg);
-    }
-}
 
-class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-    ImageView bmImage;
-
-    public DownloadImageTask(ImageView bmImage) {
-        this.bmImage = bmImage;
     }
 
-    protected Bitmap doInBackground(String... urls) {
-        String urldisplay = urls[0];
-        Log.d("MY_TAG", "doInBackground: " + urldisplay);
-        Bitmap mIcon11 = null;
-        try {
-            InputStream in = new java.net.URL(urldisplay).openStream();
-            mIcon11 = BitmapFactory.decodeStream(in);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return mIcon11;
-    }
-
-    protected void onPostExecute(Bitmap result) {
-        bmImage.setImageBitmap(result);
-    }
 }

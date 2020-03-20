@@ -1,5 +1,7 @@
 package com.example.ilcarroappl.adapters;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,7 +19,6 @@ public class ViewPagerAdapters extends FragmentStatePagerAdapter {
     public ViewPagerAdapters(@NonNull FragmentManager fm, List<CarForUsersDto> bestCar) {
         super(fm);
         this.bestCar = bestCar;
-
     }
 
     @NonNull
