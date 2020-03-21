@@ -98,8 +98,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         if (response.isSuccessful()) {
                             List<CarForUsersDto> list = new ArrayList<>(response.body());
                             ViewPagerAdapters adapter = new ViewPagerAdapters(getSupportFragmentManager(), list);
-                            bestCars.setAdapter(adapter);
                             bestCars.setOffscreenPageLimit(3);
+                            bestCars.setAdapter(adapter);
+
                         } else {
                             Log.d(TAG, "test3: " + response.errorBody().string());
                         }

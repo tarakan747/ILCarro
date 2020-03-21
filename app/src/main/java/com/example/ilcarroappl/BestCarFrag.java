@@ -1,13 +1,9 @@
 package com.example.ilcarroappl;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
+
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,16 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ilcarroappl.data.dto.CarForUsersDto;
-import com.example.ilcarroappl.dto.CarDto;
-import com.example.ilcarroappl.dto.CarListDto;
 import com.squareup.picasso.Picasso;
 
-
-import java.io.InputStream;
 import java.util.List;
-
-import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
 
 
 /**
@@ -34,26 +23,25 @@ import io.reactivex.disposables.Disposable;
  */
 public class BestCarFrag extends Fragment {
 
-    private static String nameCar, priceCar, seat, doors, manual, imgUrl;
+    String nameCar, priceCar, seat, doors, manual, imgUrl;
     TextView nameCarTxt, priceCarTxt, seatTxt, doorsTxt, manualTxt;
     ImageView photoCar;
+
 
     public BestCarFrag() {
         // Required empty public constructor
     }
 
 
-    public static Fragment of(List<CarForUsersDto> bestCar, int pos) {
+    public static Fragment of(CarForUsersDto car) {
         BestCarFrag fragment = new BestCarFrag();
-        CarForUsersDto car = bestCar.get(pos);
-        nameCar = car.getMake() + " " + car.getModel() + " " + car.getYear();
-        priceCar = car.getPricePerDay() + " $/day";
-        seat = car.getSeats().toString();
-        doors = car.getDoors().toString();
+        fragment.nameCar = car.getMake() + " \n" + car.getModel() + " " + car.getYear();
+        fragment.priceCar = car.getPricePerDay() + " $/day";
+        fragment.seat = car.getSeats().toString();
+        fragment.doors = car.getDoors().toString();
         List<String> img = car.getImageUrl();
-        imgUrl = img.get(0);
-        Log.d("MY_TAG", "of: " + imgUrl);
-        manual = car.getGear();
+        fragment.imgUrl = img.get(0);
+        fragment.manual = car.getGear();
         return fragment;
     }
 
@@ -62,7 +50,6 @@ public class BestCarFrag extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_best_car, container, false);
         init(view);
-        Log.d("MY_TAG", "onCreateView: " + imgUrl);
         Picasso.get().load(imgUrl).into(photoCar);
         nameCarTxt.setText(nameCar);
         priceCarTxt.setText(priceCar);

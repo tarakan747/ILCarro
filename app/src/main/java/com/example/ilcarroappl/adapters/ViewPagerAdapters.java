@@ -24,7 +24,7 @@ public class ViewPagerAdapters extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        return BestCarFrag.of(bestCar, position);
+        return BestCarFrag.of(bestCar.get(position));
     }
 
     @Override

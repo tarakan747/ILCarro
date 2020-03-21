@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/font"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".BestCarFrag">
 
     <ImageView
         android:id="@+id/photoCarImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/background_car"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,11 +23,11 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/raleway_regular"
-        android:gravity="center"
+        android:gravity="center|left"
         android:padding="5sp"
         android:textColor="@color/colorWhite"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/photoCarImg"
         app:layout_constraintTop_toTopOf="@+id/photoCarImg" />
 
     <TextView
@@ -39,20 +40,19 @@
         android:padding="5sp"
         android:textColor="@color/colorWhite"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/nameCarTxt"
+        app:layout_constraintEnd_toEndOf="@+id/photoCarImg"
+        app:layout_constraintTop_toTopOf="@+id/photoCarImg"
         tools:background="@color/colorDarkerBlue" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
+        android:layout_height="20dp"
         android:background="@color/colorDarkerBlue"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/photoCarImg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/photoCarImg"
+        app:layout_constraintStart_toStartOf="@+id/photoCarImg"
         tools:background="@color/colorDarkerBlue">
 
         <ImageView
@@ -97,7 +97,7 @@
         <TextView
             android:id="@+id/manualTxt"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/colorWhite"
