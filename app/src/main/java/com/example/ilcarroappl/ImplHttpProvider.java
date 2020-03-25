@@ -5,13 +5,12 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.ilcarroappl.dto.CarDto;
-import com.example.ilcarroappl.dto.CarListDto;
-import com.example.ilcarroappl.dto.ErrorDto;
-import com.example.ilcarroappl.dto.RegistrationDto;
-import com.example.ilcarroappl.dto.UserBaseDto;
-import com.example.ilcarroappl.dto.UserCarDto;
-import com.example.ilcarroappl.dto.UserDto;
+import com.example.ilcarroappl.dtoHUINI.CarDto;
+import com.example.ilcarroappl.dtoHUINI.ErrorDto;
+import com.example.ilcarroappl.dtoHUINI.RegistrationDto;
+import com.example.ilcarroappl.dtoHUINI.UserBaseDto;
+import com.example.ilcarroappl.dtoHUINI.UserCarDto;
+import com.example.ilcarroappl.dtoHUINI.UserDto;
 import com.google.gson.Gson;
 
 import java.io.IOException;

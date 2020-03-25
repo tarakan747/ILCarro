@@ -5,7 +5,7 @@
     android:id="@+id/font"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BestCarFrag">
+    tools:context=".presentation.main.view.viewPager.BestCarFrag">
 
     <ImageView
         android:id="@+id/photoCarImg"

@@ -7,7 +7,7 @@
             android:title="" />
         <item
             android:id="@+id/nav_search"
-            android:title="Search" />
+            android:title="Search"/>
         <item
             android:id="@+id/nav_work"
             android:title="Let the car work" />

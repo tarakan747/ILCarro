@@ -1,8 +1,6 @@
 package com.example.ilcarroappl.data.provider.web;
 
 import com.example.ilcarroappl.data.dto.CarForUsersDto;
-import com.example.ilcarroappl.dto.CarDto;
-import com.example.ilcarroappl.dto.CarListDto;
 
 import java.util.List;
 
