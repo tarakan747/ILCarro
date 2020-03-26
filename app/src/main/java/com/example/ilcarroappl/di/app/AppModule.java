@@ -2,7 +2,8 @@ package com.example.ilcarroappl.di.app;
 
 import android.content.Context;
 
-import com.example.ilcarroappl.StoreProvider;
+import com.example.ilcarroappl.data.provider.store.StoreProvider;
+import com.example.ilcarroappl.data.provider.store.StoreProviderImpl;
 import com.example.ilcarroappl.data.provider.web.Api;
 import com.google.gson.Gson;
 
@@ -64,4 +65,9 @@ public class AppModule {
         return retrofit.create(Api.class);
     }
 
+    @Provides
+    @Singleton
+    StoreProvider provideStore(Context context) {
+        return new StoreProviderImpl(context);
+    }
 }

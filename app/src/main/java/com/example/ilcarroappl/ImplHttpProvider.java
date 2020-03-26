@@ -5,9 +5,10 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.ilcarroappl.data.provider.store.StoreProvider;
 import com.example.ilcarroappl.dtoHUINI.CarDto;
 import com.example.ilcarroappl.dtoHUINI.ErrorDto;
-import com.example.ilcarroappl.dtoHUINI.RegistrationDto;
+import com.example.ilcarroappl.data.dto.RegistrationDto;
 import com.example.ilcarroappl.dtoHUINI.UserBaseDto;
 import com.example.ilcarroappl.dtoHUINI.UserCarDto;
 import com.example.ilcarroappl.dtoHUINI.UserDto;

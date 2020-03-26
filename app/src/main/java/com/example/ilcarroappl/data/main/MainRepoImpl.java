@@ -1,8 +1,6 @@
 package com.example.ilcarroappl.data.main;
 
-import android.util.Log;
 
-import com.example.ilcarroappl.StoreProvider;
 import com.example.ilcarroappl.data.dto.CarForUsersDto;
 import com.example.ilcarroappl.data.provider.web.Api;
 

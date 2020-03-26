@@ -70,6 +70,11 @@ public class MainFrag extends MvpAppCompatFragment implements MainView {
         return view;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 
     @OnClick(R.id.btnRed)
     void onClickRedCtn() {

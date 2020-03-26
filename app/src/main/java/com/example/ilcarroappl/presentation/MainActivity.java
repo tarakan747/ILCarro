@@ -6,12 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.viewpager.widget.ViewPager;
+
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.ilcarroappl.R;
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void init() {
-        drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.rootMain);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
 
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (item.getItemId() == R.id.search) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.drawer_layout, new SearchFragment())
+                    .add(R.id.rootMain, new SearchFragment())
                     .addToBackStack(null)
                     .commit();
         }
@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
+        Log.d(TAG, "onBackPressed: 123456");
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer((GravityCompat.START));
         } else {
@@ -106,16 +107,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_login:
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.root, new AuthFrag(true),"AuthFrag")
-                        .addToBackStack("AuthFrag")
+                        .add(R.id.rootMain, new AuthFrag(true),"AuthFrag")
+                        .addToBackStack(null)
                         .commit();
                 drawerLayout.closeDrawer((GravityCompat.START));
                 break;
             case R.id.nav_sign_up:
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.root, new AuthFrag(false),"AuthFrag")
-                        .addToBackStack("AuthFrag")
+                        .add(R.id.rootMain, new AuthFrag(false),"AuthFrag")
+                        .addToBackStack(null)
                         .commit();
                 drawerLayout.closeDrawer((GravityCompat.START));
                 break;

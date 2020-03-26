@@ -1,5 +1,7 @@
 package com.example.ilcarroappl.di.app;
 
+import com.example.ilcarroappl.di.auth.AuthComponent;
+import com.example.ilcarroappl.di.auth.AuthModule;
 import com.example.ilcarroappl.di.main.MainComponent;
 import com.example.ilcarroappl.di.main.MainModule;
 
@@ -11,4 +13,6 @@ import dagger.Component;
 @Singleton
 public interface AppComponent {
     MainComponent plus(MainModule module);
+
+    AuthComponent plus(AuthModule module);
 }
