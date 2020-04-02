@@ -1,5 +1,7 @@
 package com.example.ilcarroappl.business.auth;
 
+import android.util.Log;
+
 import com.example.ilcarroappl.data.auth.AuthRepo;
 
 import io.reactivex.Completable;
@@ -13,7 +15,13 @@ public class AuthInteractorImpl implements AuthInteractor {
 
     @Override
     public Completable onLogin(String email, String password) {
-        return null;
+        try {
+            isEmailValid(email);
+            isPasswordValid(password);
+            return repository.onLogin(email, password);
+        } catch (Throwable throwable) {
+            return Completable.error(throwable);
+        }
     }
 
     @Override
@@ -29,7 +37,7 @@ public class AuthInteractorImpl implements AuthInteractor {
     }
 
     private void isPasswordValid(String password) {
-        if (password.length()<8){
+        if (password.length() < 8) {
             throw new PasswordValidException("Password length minimum 8");
         }
     }
@@ -44,11 +52,12 @@ public class AuthInteractorImpl implements AuthInteractor {
     }
 
     private void isNameValid(String name, String lastName) {
-        if(name==null){
+        if (name == null) {
             throw new NameException("Did not enter a name!");
         }
-        if (lastName == null){
+        if (lastName == null) {
             throw new NameException("did not enter a last name!");
         }
     }
+
 }

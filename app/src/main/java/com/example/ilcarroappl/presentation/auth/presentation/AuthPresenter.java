@@ -26,6 +26,16 @@ public class AuthPresenter extends MvpPresenter<AuthView> {
         App.get().plus(new AuthModule()).inject(this);
     }
 
+    public void onLogin(String email, String password) {
+        getViewState().showProgress();
+        disposable = interactor.onLogin(email, password)
+                .observeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::onSuccess, throwable -> {
+                    this.onError(throwable.getMessage());
+                });
+    }
+
     public void onRegistration(String name, String lastName, String email, String password) {
         getViewState().showProgress();
         disposable = interactor.onRegistration(name, lastName, email, password)
@@ -46,6 +56,7 @@ public class AuthPresenter extends MvpPresenter<AuthView> {
     }
 
     public void onError(String error) {
+        Log.d("MY_TAG", "onError: "+ error);
         getViewState().hideProgress();
         getViewState().showError(error);
     }

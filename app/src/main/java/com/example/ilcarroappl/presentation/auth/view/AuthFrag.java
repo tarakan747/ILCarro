@@ -104,6 +104,13 @@ public class AuthFrag extends MvpAppCompatFragment implements AuthView {
         unbinder.unbind();
     }
 
+
+    @OnClick(R.id.btnRedLoginFrame)
+    void onLoginClick() {
+        presenter.onLogin(inputEmailLogin.getText().toString(),
+                inputPasswordLogin.getText().toString());
+    }
+
     @OnClick(R.id.swapBtn)
     void onClickSwapBtn() {
         if (!swap) {
@@ -127,13 +134,13 @@ public class AuthFrag extends MvpAppCompatFragment implements AuthView {
 
     @OnClick(R.id.btnRedRegistrationFrame)
     void onRegClick() {
-        if(checkBoxRegistration.isChecked()) {
+        if (checkBoxRegistration.isChecked()) {
             presenter.onRegistration(inputNameRegistration.getText().toString(),
                     inputLastNameRegistration.getText().toString(),
                     inputEmailRegistration.getText().toString(),
                     inputPasswordRegistration.getText().toString());
         } else {
-            Toast.makeText(requireContext(),"Please agree privacy policy",Toast.LENGTH_LONG).show();
+            Toast.makeText(requireContext(), "Please agree privacy policy", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -153,7 +160,6 @@ public class AuthFrag extends MvpAppCompatFragment implements AuthView {
 
     @Override
     public void showError(String error) {
-        Context context;
         dialog = new AlertDialog.Builder(requireContext())
                 .setTitle("Error")
                 .setMessage(error)

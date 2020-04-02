@@ -2,6 +2,7 @@ package com.example.ilcarroappl.data.auth;
 
 
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -19,6 +20,7 @@ import retrofit2.Response;
 public class AuthRepoImpl implements AuthRepo {
     private Api api;
     private StoreProvider storeProvider;
+    public UserDtoForUser user;
 
 
     public AuthRepoImpl(Api api, StoreProvider storeProvider) {
@@ -26,9 +28,28 @@ public class AuthRepoImpl implements AuthRepo {
         this.storeProvider = storeProvider;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public Completable onLogin(String email, String password) {
-        return null;
+        String token = Base64.getEncoder().encodeToString((email + ":" + password).getBytes());
+        storeProvider.saveToken(token);
+        Log.d("MY_TAG", "onLogin: " + token);
+        return Completable.fromSingle(
+                api.login(token).doOnSuccess(this::onLoginSuccess)
+        );
+    }
+
+    private void onLoginSuccess(Response<UserDtoForUser> response) throws IOException {
+        Log.d("MY_TAG", "onLoginSuccess: " + response.body());
+        if (response.isSuccessful()) {
+            this.user = response.body();
+        } else if (response.code() == 400 || response.code() == 401 || response.code() == 404) {
+            storeProvider.clearToken();
+            throw new RuntimeException(response.errorBody().string());
+        } else {
+            storeProvider.clearToken();
+            throw new RuntimeException("Server error! Call to support!");
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -45,11 +66,17 @@ public class AuthRepoImpl implements AuthRepo {
 
     private void onRegistrationSuccess(Response<UserDtoForUser> response) throws IOException {
         if (response.isSuccessful()) {
-            UserDtoForUser user = response.body();
+            this.user = response.body();
         } else if (response.code() == 400 || response.code() == 403 || response.code() == 409) {
+            storeProvider.clearToken();
             throw new RuntimeException(response.errorBody().string());
         } else {
+            storeProvider.clearToken();
             throw new RuntimeException("Server error! Call to support!");
         }
+    }
+
+    public UserDtoForUser getUser() {
+        return this.user;
     }
 }

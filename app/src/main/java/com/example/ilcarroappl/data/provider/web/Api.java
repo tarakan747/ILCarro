@@ -4,8 +4,8 @@ import com.example.ilcarroappl.data.dto.CarForUsersDto;
 import com.example.ilcarroappl.data.dto.RegistrationDto;
 import com.example.ilcarroappl.data.dto.UserDtoForUser;
 
-import java.util.Base64;
 import java.util.List;
+
 
 import io.reactivex.Single;
 import retrofit2.Response;
@@ -22,4 +22,7 @@ public interface Api {
     @POST("/registration")
     Single<Response<UserDtoForUser>> registration(@Header("Authorization") String token,
                                                   @Body RegistrationDto person);
+
+    @GET("/user/login")
+    Single<Response<UserDtoForUser>> login(@Header("Authorization") String token);
 }
