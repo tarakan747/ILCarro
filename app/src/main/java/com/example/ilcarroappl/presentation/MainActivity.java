@@ -18,6 +18,7 @@ import com.example.ilcarroappl.R;
 import com.example.ilcarroappl.SearchFragment;
 import com.example.ilcarroappl.presentation.auth.view.AuthFrag;
 import com.example.ilcarroappl.presentation.main.view.MainFrag;
+import com.example.ilcarroappl.presentation.rent.view.RentFrag;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.root, new MainFrag())
+                .replace(R.id.root, new RentFrag())
                 .commit();
         setContentView(R.layout.activity_main);
         init();
