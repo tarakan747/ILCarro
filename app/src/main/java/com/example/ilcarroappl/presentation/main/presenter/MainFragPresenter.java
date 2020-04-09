@@ -1,13 +1,9 @@
 package com.example.ilcarroappl.presentation.main.presenter;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.activity.OnBackPressedDispatcherOwner;
-
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.example.ilcarroappl.App;
 import com.example.ilcarroappl.business.main.MainInteractor;
-import com.example.ilcarroappl.data.provider.web.Api;
 import com.example.ilcarroappl.di.main.MainModule;
 import com.example.ilcarroappl.presentation.main.view.MainView;
 

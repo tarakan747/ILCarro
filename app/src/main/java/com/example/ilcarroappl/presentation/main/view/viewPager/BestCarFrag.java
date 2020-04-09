@@ -17,6 +17,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,13 +28,24 @@ import java.util.List;
 public class BestCarFrag extends Fragment {
 
     String nameCar, priceCar, seat, doors, manual, imgUrl;
-    TextView nameCarTxt, priceCarTxt, seatTxt, doorsTxt, manualTxt;
+
+    @BindView(R.id.nameCarTxt)
+    TextView nameCarTxt;
+    @BindView(R.id.priceCarTxt)
+    TextView priceCarTxt;
+    @BindView(R.id.seatTxt)
+    TextView seatTxt;
+    @BindView(R.id.doorsTxt)
+    TextView doorsTxt;
+    @BindView(R.id.manualTxt)
+    TextView manualTxt;
+    @BindView(R.id.photoCarImg)
     ImageView photoCar;
 
+    private Unbinder unbinder;
 
-    public BestCarFrag() {
-        // Required empty public constructor
-    }
+
+    public BestCarFrag() {}
 
 
     public static Fragment of(CarForUsersDto car) {
@@ -49,7 +64,8 @@ public class BestCarFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_best_car, container, false);
-        init(view);
+        unbinder = ButterKnife.bind(this, view);
+
         Picasso.get().load(imgUrl).into(photoCar);
         nameCarTxt.setText(nameCar);
         priceCarTxt.setText(priceCar);
@@ -59,15 +75,4 @@ public class BestCarFrag extends Fragment {
 
         return view;
     }
-
-    private void init(View view) {
-        photoCar = view.findViewById(R.id.photoCarImg);
-        nameCarTxt = view.findViewById(R.id.nameCarTxt);
-        priceCarTxt = view.findViewById(R.id.priceCarTxt);
-        seatTxt = view.findViewById(R.id.seatTxt);
-        doorsTxt = view.findViewById(R.id.doorsTxt);
-        manualTxt = view.findViewById(R.id.manualTxt);
-
-    }
-
 }

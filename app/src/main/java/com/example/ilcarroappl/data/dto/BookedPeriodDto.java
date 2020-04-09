@@ -13,22 +13,21 @@ public class BookedPeriodDto {
     String orderId;
     @SerializedName("paid")
     Boolean paid;
-    @SerializedName("start_date_time")
-    String startDateTime;
     @SerializedName("person_who_booked")
     PersonWhoBookedDto personWhoBooked;
-
+    @SerializedName("start_date_time")
+    String startDateTime;
     public BookedPeriodDto() {
     }
 
-    public BookedPeriodDto(Double amount, String bookingDate, String endDateTime, String orderId, Boolean paid, String startDateTime, PersonWhoBookedDto personWhoBooked) {
+    public BookedPeriodDto(Double amount, String bookingDate, String endDateTime, String orderId, Boolean paid, PersonWhoBookedDto personWhoBooked, String startDateTime) {
         this.amount = amount;
         this.bookingDate = bookingDate;
         this.endDateTime = endDateTime;
         this.orderId = orderId;
         this.paid = paid;
-        this.startDateTime = startDateTime;
         this.personWhoBooked = personWhoBooked;
+        this.startDateTime = startDateTime;
     }
 
     public Double getAmount() {

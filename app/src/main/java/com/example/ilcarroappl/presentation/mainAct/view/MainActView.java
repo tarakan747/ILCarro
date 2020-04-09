@@ -1,4 +1,4 @@
-package com.example.ilcarroappl.presentation.auth.view;
+package com.example.ilcarroappl.presentation.mainAct.view;
 
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
@@ -6,20 +6,21 @@ import com.arellomobile.mvp.viewstate.strategy.SingleStateStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 @StateStrategyType(AddToEndSingleStrategy.class)
-public interface AuthView extends MvpView {
-    void showProgress();
-
-    void hideProgress();
-
-    void onClickSwapBtn();
+public interface MainActView extends MvpView {
 
     @StateStrategyType(SingleStateStrategy.class)
     void showError(String error);
 
     @StateStrategyType(SingleStateStrategy.class)
-    void hideError();
+    void checkPermissions();
 
     @StateStrategyType(SingleStateStrategy.class)
-    void showNextView();
+    void navigationSetting();
+
+    @StateStrategyType(SingleStateStrategy.class)
+    void toolbarSetting();
+
+    @StateStrategyType(SingleStateStrategy.class)
+    void getLocationUpd();
 
 }

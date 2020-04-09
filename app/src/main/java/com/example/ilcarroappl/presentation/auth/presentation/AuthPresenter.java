@@ -49,6 +49,7 @@ public class AuthPresenter extends MvpPresenter<AuthView> {
 
     private void onSuccess() {
         getViewState().hideProgress();
+        getViewState().onClickSwapBtn();
     }
 
     public void onDialogClicked() {

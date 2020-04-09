@@ -9,12 +9,15 @@ import com.example.ilcarroappl.di.auth.AuthComponent;
 import com.example.ilcarroappl.di.auth.AuthModule;
 import com.example.ilcarroappl.di.main.MainComponent;
 import com.example.ilcarroappl.di.main.MainModule;
+import com.example.ilcarroappl.di.mainAct.MainActComponent;
+import com.example.ilcarroappl.di.mainAct.MainActModule;
 
 public class App extends Application {
     private static App app;
     private AppComponent appComponent;
     private MainComponent mainComponent;
     private AuthComponent authComponent;
+    private MainActComponent mainActComponent;
 
     public App() {
         app = this;
@@ -46,6 +49,16 @@ public class App extends Application {
         }
         return mainComponent;
     }
+
+    public MainActComponent plus(MainActModule module) {
+        if (mainActComponent == null) {
+            mainActComponent = appComponent.plus(module);
+        }
+        return mainActComponent;
+    }
+
+    public void clearMainActComponent() {
+        mainActComponent = null; }
 
     public void clearMainComponent() {
         mainComponent = null;

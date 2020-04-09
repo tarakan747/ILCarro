@@ -1,5 +1,7 @@
 package com.example.ilcarroappl.presentation.rent.view;
 
+import android.content.Context;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +17,7 @@ import com.example.ilcarroappl.R;
  */
 public class RentFrag extends Fragment {
 
+    LocationManager locationManager;
     public RentFrag() {
         // Required empty public constructor
     }
@@ -24,6 +27,9 @@ public class RentFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rent, container, false);
+        View view = inflater.inflate(R.layout.fragment_rent, container, false);
+
+        return view;
     }
+
 }

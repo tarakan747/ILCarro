@@ -1,49 +1,90 @@
-package com.example.ilcarroappl.presentation;
+package com.example.ilcarroappl.presentation.mainAct.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.arellomobile.mvp.MvpAppCompatActivity;
+import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.ilcarroappl.R;
 import com.example.ilcarroappl.SearchFragment;
 import com.example.ilcarroappl.presentation.auth.view.AuthFrag;
 import com.example.ilcarroappl.presentation.main.view.MainFrag;
-import com.example.ilcarroappl.presentation.rent.view.RentFrag;
+import com.example.ilcarroappl.presentation.mainAct.presentation.MainActivityPresenter;
 import com.google.android.material.navigation.NavigationView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+public class MainActivity extends MvpAppCompatActivity implements MainActView, NavigationView.OnNavigationItemSelectedListener, LocationListener {
 
     private static final String TAG = "MY_TAG";
+
+    @InjectPresenter
+    MainActivityPresenter presenter;
+
+    @BindView(R.id.rootMain)
     DrawerLayout drawerLayout;
+    @BindView(R.id.nav_view)
     NavigationView navigationView;
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
+    private LocationManager manager;
     MenuItem searchItem;
+    AlertDialog dialog;
+
+    private Unbinder unbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.root, new RentFrag())
-                .commit();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.root, new MainFrag())
+                .commitNow();
+
         setContentView(R.layout.activity_main);
-        init();
+        checkPermissions();
+        unbinder = ButterKnife.bind(this, this);
+
         toolbarSetting();
         navigationSetting();
-
     }
 
-    private void navigationSetting() {
+    @Override
+    public void showError(String error) {
+        dialog = new AlertDialog.Builder(this)
+                .setTitle("Error")
+                .setMessage(error)
+                .setCancelable(false)
+                .setPositiveButton("OK", null)
+                .create();
+        dialog.show();
+    }
+
+    public void checkPermissions() {
+        presenter.check(this);
+    }//OK!
+
+    public void navigationSetting() {
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -51,16 +92,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    private void toolbarSetting() {
+    public void toolbarSetting() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-    }
-
-    private void init() {
-        drawerLayout = findViewById(R.id.rootMain);
-        navigationView = findViewById(R.id.nav_view);
-        toolbar = findViewById(R.id.toolbar);
-
     }
 
     @Override
@@ -93,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    //Navigation
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -108,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_login:
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.rootMain, new AuthFrag(true),"AuthFrag")
+                        .add(R.id.rootMain, new AuthFrag(true), "AuthFrag")
                         .addToBackStack(null)
                         .commit();
                 drawerLayout.closeDrawer((GravityCompat.START));
@@ -116,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_sign_up:
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.rootMain, new AuthFrag(false),"AuthFrag")
+                        .add(R.id.rootMain, new AuthFrag(false), "AuthFrag")
                         .addToBackStack(null)
                         .commit();
                 drawerLayout.closeDrawer((GravityCompat.START));
@@ -131,6 +166,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    //Location
+    @Override
+    public void getLocationUpd() {
+        manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        }
+        manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+    }//OK
+
+    @Override
+    public void onLocationChanged(Location location) {
+        presenter.onSaveLocation(location);
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        Log.d(TAG, "onStatusChanged: ");
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        Log.d(TAG, "onProviderEnabled: ");
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        Log.d(TAG, "onProviderDisabled: ");
+    }
 }
 
 

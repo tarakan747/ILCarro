@@ -39,13 +39,13 @@ public class AuthRepoImpl implements AuthRepo {
         );
     }
 
-    private void onLoginSuccess(Response<UserDtoForUser> response) throws IOException {
+    private void onLoginSuccess(Response<UserDtoForUser> response) {
         Log.d("MY_TAG", "onLoginSuccess: " + response.body());
         if (response.isSuccessful()) {
             this.user = response.body();
         } else if (response.code() == 400 || response.code() == 401 || response.code() == 404) {
             storeProvider.clearToken();
-            throw new RuntimeException(response.errorBody().string());
+            throw new RuntimeException(response.message());
         } else {
             storeProvider.clearToken();
             throw new RuntimeException("Server error! Call to support!");
@@ -64,12 +64,12 @@ public class AuthRepoImpl implements AuthRepo {
     }
 
 
-    private void onRegistrationSuccess(Response<UserDtoForUser> response) throws IOException {
+    private void onRegistrationSuccess(Response<UserDtoForUser> response) {
         if (response.isSuccessful()) {
             this.user = response.body();
         } else if (response.code() == 400 || response.code() == 403 || response.code() == 409) {
             storeProvider.clearToken();
-            throw new RuntimeException(response.errorBody().string());
+            throw new RuntimeException(response.message());
         } else {
             storeProvider.clearToken();
             throw new RuntimeException("Server error! Call to support!");

@@ -111,16 +111,24 @@ public class AuthFrag extends MvpAppCompatFragment implements AuthView {
                 inputPasswordLogin.getText().toString());
     }
 
+    @Override
     @OnClick(R.id.swapBtn)
-    void onClickSwapBtn() {
+    public void onClickSwapBtn() {
         if (!swap) {
             loginFrame.setVisibility(View.VISIBLE);
             registrationFrame.setVisibility(View.GONE);
             swapBtn.setText("Sign up");
+            inputEmailRegistration.setText("");
+            inputNameRegistration.setText("");
+            inputLastNameRegistration.setText("");
+            inputPasswordRegistration.setText("");
+            checkBoxRegistration.setChecked(false);
         } else {
             loginFrame.setVisibility(View.GONE);
             registrationFrame.setVisibility(View.VISIBLE);
             swapBtn.setText("Log in");
+            inputEmailLogin.setText("");
+            inputPasswordLogin.setText("");
         }
         this.swap = !swap;
     }
@@ -180,6 +188,6 @@ public class AuthFrag extends MvpAppCompatFragment implements AuthView {
     public void showNextView() {
         Objects.requireNonNull(getFragmentManager()).beginTransaction()
                 .remove(this)
-                .commit();
+                .commitNow();
     }
 }
