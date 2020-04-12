@@ -29,9 +29,9 @@ public class AuthPresenter extends MvpPresenter<AuthView> {
     public void onLogin(String email, String password) {
         getViewState().showProgress();
         disposable = interactor.onLogin(email, password)
-                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::onSuccess, throwable -> {
+                .subscribe(this::onSuccessLogin, throwable -> {
                     this.onError(throwable.getMessage());
                 });
     }
@@ -47,6 +47,10 @@ public class AuthPresenter extends MvpPresenter<AuthView> {
                 });
     }
 
+    private void onSuccessLogin() {
+        getViewState().showNextView();
+    }
+
     private void onSuccess() {
         getViewState().hideProgress();
         getViewState().onClickSwapBtn();
@@ -57,7 +61,7 @@ public class AuthPresenter extends MvpPresenter<AuthView> {
     }
 
     public void onError(String error) {
-        Log.d("MY_TAG", "onError: "+ error);
+        Log.d("MY_TAG", "onError: " + error);
         getViewState().hideProgress();
         getViewState().showError(error);
     }

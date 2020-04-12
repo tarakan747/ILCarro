@@ -6,7 +6,7 @@ public class BookedCarsDtoForUser {
     @SerializedName("booked_period")
     BookedPeriodDto bookedPeriod;
     @SerializedName("serial_number")
-    String serial_number;
+    String serialNumber;
 
 
     public BookedCarsDtoForUser() {
@@ -14,7 +14,7 @@ public class BookedCarsDtoForUser {
 
     public BookedCarsDtoForUser(BookedPeriodDto bookedPeriod, String serial_number) {
         this.bookedPeriod = bookedPeriod;
-        this.serial_number = serial_number;
+        this.serialNumber = serial_number;
     }
 
     public BookedPeriodDto getBookedPeriod() {
@@ -22,14 +22,14 @@ public class BookedCarsDtoForUser {
     }
 
     public String getSerial_number() {
-        return serial_number;
+        return serialNumber;
     }
 
     @Override
     public String toString() {
         return "BookedCarsDtoForUser{" +
                 "bookedPeriod=" + bookedPeriod +
-                ", serial_number='" + serial_number + '\'' +
+                ", serial_number='" + serialNumber + '\'' +
                 '}';
     }
 }

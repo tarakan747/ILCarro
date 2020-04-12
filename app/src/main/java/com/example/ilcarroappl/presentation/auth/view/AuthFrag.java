@@ -19,6 +19,7 @@ import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.ilcarroappl.R;
 import com.example.ilcarroappl.presentation.auth.presentation.AuthPresenter;
+import com.example.ilcarroappl.presentation.rent.view.RentFrag;
 
 import java.util.Objects;
 

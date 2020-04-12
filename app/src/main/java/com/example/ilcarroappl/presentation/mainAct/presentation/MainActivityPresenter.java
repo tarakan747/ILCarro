@@ -64,7 +64,7 @@ public class MainActivityPresenter extends MvpPresenter<MainActView> {
                             if (report.areAllPermissionsGranted()) {
                                 getViewState().getLocationUpd();
                             } else {
-                                onDestroy();
+                                getViewState().onDestroy();
                             }
                         }
                     }
@@ -77,9 +77,8 @@ public class MainActivityPresenter extends MvpPresenter<MainActView> {
                 .check();
     }
 
-    @Override
+
     public void onDestroy() {
-        super.onDestroy();
         if (disposable != null) {
             disposable.dispose();
         }

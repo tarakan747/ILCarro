@@ -17,6 +17,7 @@ public class BookedPeriodDto {
     PersonWhoBookedDto personWhoBooked;
     @SerializedName("start_date_time")
     String startDateTime;
+
     public BookedPeriodDto() {
     }
 

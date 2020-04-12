@@ -7,27 +7,34 @@ import java.util.List;
 public class UserDtoForUser {
     @SerializedName("booked_cars")
     List<BookedCarsDtoForUser> bookedCars;
+
     @SerializedName("comments")
-    List<CommentDto> comment;
+    List<CommentDto> comments;
+
     @SerializedName("first_name")
     String firstName;
+
     @SerializedName("history")
     List<HistoryDtoForUser> history;
+
     @SerializedName("own_cars")
     List<OwnerCarDtoForUser> ownCars;
+
     @SerializedName("photo")
     String photo;
+
     @SerializedName("registration_date")
     String registrationDate;
+
     @SerializedName("second_name")
     String secondName;
 
     public UserDtoForUser() {
     }
 
-    public UserDtoForUser(List<BookedCarsDtoForUser> bookedCars, List<CommentDto> comment, String firstName, List<HistoryDtoForUser> history, List<OwnerCarDtoForUser> ownCars, String photo, String registrationDate, String secondName) {
+    public UserDtoForUser(List<BookedCarsDtoForUser> bookedCars, List<CommentDto> comments, String firstName, List<HistoryDtoForUser> history, List<OwnerCarDtoForUser> ownCars, String photo, String registrationDate, String secondName) {
         this.bookedCars = bookedCars;
-        this.comment = comment;
+        this.comments = comments;
         this.firstName = firstName;
         this.history = history;
         this.ownCars = ownCars;
@@ -40,8 +47,8 @@ public class UserDtoForUser {
         return bookedCars;
     }
 
-    public List<CommentDto> getComment() {
-        return comment;
+    public List<CommentDto> getComments() {
+        return comments;
     }
 
     public String getFirstName() {
@@ -72,7 +79,7 @@ public class UserDtoForUser {
     public String toString() {
         return "UserDtoForUser{" +
                 "bookedCars=" + bookedCars +
-                ", comment=" + comment +
+                ", comment=" + comments +
                 ", firstName='" + firstName + '\'' +
                 ", history=" + history +
                 ", ownCars=" + ownCars +

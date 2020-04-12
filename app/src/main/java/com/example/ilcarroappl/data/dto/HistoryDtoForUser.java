@@ -6,29 +6,29 @@ public class HistoryDtoForUser {
     @SerializedName("booked_period")
     HistoryPeriodDto bookedPeriod;
     @SerializedName("serial_number")
-    String serial_number;
+    String serialNumber;
 
     public HistoryDtoForUser() {
     }
 
-    public HistoryDtoForUser(HistoryPeriodDto bookedPeriod, String serial_number) {
+    public HistoryDtoForUser(HistoryPeriodDto bookedPeriod, String serialNumber) {
         this.bookedPeriod = bookedPeriod;
-        this.serial_number = serial_number;
+        this.serialNumber = serialNumber;
     }
 
     public HistoryPeriodDto getBookedPeriod() {
         return bookedPeriod;
     }
 
-    public String getSerial_number() {
-        return serial_number;
+    public String getSerialNumber() {
+        return serialNumber;
     }
 
     @Override
     public String toString() {
         return "HistoryDtoForUser{" +
                 "bookedPeriod=" + bookedPeriod +
-                ", serial_number='" + serial_number + '\'' +
+                ", serial_number='" + serialNumber + '\'' +
                 '}';
     }
 }

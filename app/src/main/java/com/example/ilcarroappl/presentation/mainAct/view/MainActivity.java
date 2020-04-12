@@ -34,7 +34,8 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-public class MainActivity extends MvpAppCompatActivity implements MainActView, NavigationView.OnNavigationItemSelectedListener, LocationListener {
+public class MainActivity extends MvpAppCompatActivity implements
+        MainActView, NavigationView.OnNavigationItemSelectedListener, LocationListener {
 
     private static final String TAG = "MY_TAG";
 
@@ -82,7 +83,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainActView, N
 
     public void checkPermissions() {
         presenter.check(this);
-    }//OK!
+    }
 
     public void navigationSetting() {
         navigationView.bringToFront();
@@ -174,7 +175,13 @@ public class MainActivity extends MvpAppCompatActivity implements MainActView, N
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
         }
         manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
-    }//OK
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
+    }
 
     @Override
     public void onLocationChanged(Location location) {

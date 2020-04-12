@@ -1,7 +1,5 @@
 package com.example.ilcarroappl.presentation.rent.view;
 
-import android.content.Context;
-import android.location.LocationManager;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,7 +15,6 @@ import com.example.ilcarroappl.R;
  */
 public class RentFrag extends Fragment {
 
-    LocationManager locationManager;
     public RentFrag() {
         // Required empty public constructor
     }
