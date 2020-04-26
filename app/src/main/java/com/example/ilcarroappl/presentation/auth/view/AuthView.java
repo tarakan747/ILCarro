@@ -11,6 +11,8 @@ public interface AuthView extends MvpView {
 
     void hideProgress();
 
+    void toggleForced();
+
     void onClickSwapBtn();
 
     @StateStrategyType(SingleStateStrategy.class)

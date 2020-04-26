@@ -23,6 +23,9 @@ public interface MainActView extends MvpView {
     @StateStrategyType(SingleStateStrategy.class)
     void getLocationUpd();
 
+    @StateStrategyType(SingleStateStrategy.class)
+    void isLogin(boolean x);
+
     void onDestroy();
 
 }

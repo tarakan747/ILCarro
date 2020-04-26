@@ -30,9 +30,7 @@ public class MainRepoImpl implements MainRepo {
     @Override
     public Completable onViewPager() {
         return Completable.fromSingle(
-                api.topCar().doOnSuccess(this::doOnGetSuccess).map(response -> {
-                    return response.body();
-                }));
+                api.topCar().doOnSuccess(this::doOnGetSuccess).map(response -> response.body()));
     }
 
     private void doOnGetSuccess(Response<List<CarForUsersDto>> response) throws IOException {

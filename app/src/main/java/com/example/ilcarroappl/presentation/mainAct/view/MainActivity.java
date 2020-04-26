@@ -61,13 +61,24 @@ public class MainActivity extends MvpAppCompatActivity implements
                 .beginTransaction()
                 .replace(R.id.root, new MainFrag())
                 .commitNow();
-
         setContentView(R.layout.activity_main);
-        checkPermissions();
-        unbinder = ButterKnife.bind(this, this);
 
+        unbinder = ButterKnife.bind(this, this);
         toolbarSetting();
         navigationSetting();
+        checkPermissions();
+
+
+        if (presenter.isLogin()) {
+            isLogin(true);
+        }
+    }
+
+    @Override
+    public void isLogin(boolean q) {
+        navigationView.getMenu().findItem(R.id.nav_exit).setVisible(q);
+        navigationView.getMenu().findItem(R.id.nav_login).setVisible(!q);
+        navigationView.getMenu().findItem(R.id.nav_sign_up).setVisible(!q);
     }
 
     @Override
@@ -119,7 +130,6 @@ public class MainActivity extends MvpAppCompatActivity implements
 
     @Override
     public void onBackPressed() {
-        Log.d(TAG, "onBackPressed: 123456");
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer((GravityCompat.START));
         } else {
@@ -163,8 +173,24 @@ public class MainActivity extends MvpAppCompatActivity implements
             case R.id.nav_work:
                 Toast.makeText(this, "Work", Toast.LENGTH_LONG).show();
                 break;
+            case R.id.nav_exit:
+                setDialog();
+                break;
         }
         return true;
+    }
+
+    void setDialog() {
+        dialog = new AlertDialog.Builder(this)
+                .setMessage("Your sure ?")
+                .setPositiveButton("Yes", (dialog1, which) -> {
+                    isLogin(false);
+                    presenter.logOut();
+                })
+                .setNegativeButton("No", null)
+                .setCancelable(false)
+                .create();
+        dialog.show();
     }
 
     //Location

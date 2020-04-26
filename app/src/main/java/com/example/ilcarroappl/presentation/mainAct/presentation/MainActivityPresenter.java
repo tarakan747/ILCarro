@@ -45,6 +45,16 @@ public class MainActivityPresenter extends MvpPresenter<MainActView> {
                 });
     }
 
+    public boolean isLogin(){
+        return interactor.isLogin();
+    }
+
+    public void logOut(){
+        interactor.logOut();
+    }
+
+
+
     private void onError(String error) {
         getViewState().showError(error);
     }

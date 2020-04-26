@@ -7,4 +7,8 @@ import io.reactivex.disposables.Disposable;
 
 public interface MainActInteractor {
     Completable onSaveLocation(Location location);
+
+    boolean isLogin();
+
+    boolean logOut();
 }

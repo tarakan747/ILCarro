@@ -1,364 +1,412 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="250dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/background_car" />
-
-    <TextView
-        android:id="@+id/textView21"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="5dp"
-        android:background="@color/colorDarkerBlue"
-        android:gravity="center"
-        android:padding="3sp"
-        android:text="TextView"
-        android:textColor="@color/colorWhite"
-        android:textSize="20sp" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:button="@drawable/like_check_box" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/textView21"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="95dp"
-        android:layout_marginBottom="5dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/seat" />
-
-        <TextView
-            android:id="@+id/textView19"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/raleway_regular"
-            android:gravity="center"
-            android:text="0"
-            android:textSize="18sp" />
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/car_door" />
-
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/raleway_regular"
-            android:gravity="center"
-            android:text="0"
-            android:textSize="18sp" />
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/manual_transmission" />
-
-        <TextView
-            android:id="@+id/textView23"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="auto"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:orientation="horizontal">
+        android:layout_height="1200dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/background_car"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorDarkerBlue"
+            android:gravity="center"
+            android:padding="3sp"
+            android:text="TextView"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/imageView" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:button="@drawable/like_check_box"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:id="@+id/linearLayout5"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="95dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/textView21"
+            app:layout_constraintStart_toStartOf="@+id/imageView">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/seat" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/raleway_regular"
-                android:gravity="end"
-                android:hint="Engine:"
+                android:gravity="center"
+                android:text="0"
                 android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="end"
-                android:hint="Fuel:"
-                android:textSize="18sp" />
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/car_door" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/raleway_regular"
-                android:gravity="end"
-                android:hint="Gear:"
+                android:gravity="center"
+                android:text="0"
                 android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="end"
-                android:hint="Fuel cons:"
-                android:textSize="18sp" />
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/manual_transmission" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="end"
-                android:hint="WD:"
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="auto"
                 android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/liner"
-            android:layout_width="wrap_content"
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="500dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView">
 
-            <TextView
-                android:id="@+id/engineTxt"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="start|end"
-                android:text="ww"
-                android:textColor="#062639"
-                android:textSize="18sp" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/fuelTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="start|end"
-                android:text="wer"
-                android:textColor="#062639"
-                android:textSize="18sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="end"
+                    android:hint="Engine:"
+                    android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/gearTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="start|end"
-                android:text="wer"
-                android:textColor="#062639"
-                android:textSize="18sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="end"
+                    android:hint="Fuel:"
+                    android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/consFuelTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="start|end"
-                android:text="wer"
-                android:textColor="#062639"
-                android:textSize="18sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="end"
+                    android:hint="Gear:"
+                    android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/wdTxt"
-                android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="end"
+                    android:hint="Fuel cons:"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="end"
+                    android:hint="WD:"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/liner"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="start|end"
-                android:text="wer"
-                android:textColor="#062639"
-                android:textSize="18sp" />
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/engineTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="start|end"
+                    android:text="ww"
+                    android:textColor="#062639"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/fuelTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="start|end"
+                    android:text="wer"
+                    android:textColor="#062639"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/gearTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="start|end"
+                    android:text="wer"
+                    android:textColor="#062639"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/consFuelTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="start|end"
+                    android:text="wer"
+                    android:textColor="#062639"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/wdTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="start|end"
+                    android:text="wer"
+                    android:textColor="#062639"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="end"
+                    android:hint="HP:"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="end"
+                    android:hint="Torque:"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="end"
+                    android:hint="Doors:"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="end"
+                    android:hint="Seats:"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="end"
+                    android:hint="Class:"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/hpTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="start|end"
+                    android:text="wer"
+                    android:textColor="#062639"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/torqueTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="start|end"
+                    android:text="wer"
+                    android:textColor="#062639"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/doorsTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="start|end"
+                    android:text="wer"
+                    android:textColor="#062639"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/seatsTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="start|end"
+                    android:text="wer"
+                    android:textColor="#062639"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/classTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:gravity="start|end"
+                    android:text="wer"
+                    android:textColor="#062639"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linearLayout3"
+        <TextView
+            android:id="@+id/descriptionClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/raleway_regular"
+            android:text="Description &gt;"
+            android:textColor="#062639"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="end"
-                android:hint="HP:"
-                android:textSize="18sp" />
+        <TextView
+            android:id="@+id/descriptionTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="25dp"
+            android:fontFamily="@font/raleway_regular"
+            android:lineSpacingExtra="5sp"
+            android:text="BRAND NEW FULLY LOADED CUSTOM 2018 RANGE ROVER HSE with a 3.0 Liter Supercharged V6 Engine. The Range Rover HSE has a 380 horsepower V6, 8-Speed automatic transmission with gearshift paddles, all wheel drive, sliding panoramic roof, Bluetooth and USB, touch screen interface with navigation and interactive driver display. ADDITIONAL CUSTOM UPGRADES INCLUDE painted brake calibers yellow with decals, powder coated wheels gloss black, window tint 35%, and full blackout package."
+            android:textAlignment="textStart"
+            android:textColor="#062639"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionClick" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="end"
-                android:hint="Torque:"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="end"
-                android:hint="Doors:"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="end"
-                android:hint="Seats:"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="end"
-                android:hint="Class:"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/raleway_regular"
+            android:text="Feedbacks &gt;"
+            android:textColor="#062639"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionTxt" />
 
-            <TextView
-                android:id="@+id/hpTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="start|end"
-                android:text="wer"
-                android:textColor="#062639"
-                android:textSize="18sp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="254dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-            <TextView
-                android:id="@+id/torqueTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="start|end"
-                android:text="wer"
-                android:textColor="#062639"
-                android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/doorsTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="start|end"
-                android:text="wer"
-                android:textColor="#062639"
-                android:textSize="18sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/seatsTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="start|end"
-                android:text="wer"
-                android:textColor="#062639"
-                android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/classTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/raleway_regular"
-                android:gravity="start|end"
-                android:text="wer"
-                android:textColor="#062639"
-                android:textSize="18sp" />
-        </LinearLayout>
 
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/rentBtn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/colorRed"
-        android:fontFamily="@font/raleway_regular"
-        android:text="Rent now!"
-        android:textAllCaps="false"
-        android:textColor="@color/colorWhite"
-        android:textSize="26sp" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

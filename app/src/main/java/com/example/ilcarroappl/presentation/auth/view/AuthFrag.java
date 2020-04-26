@@ -1,6 +1,7 @@
 package com.example.ilcarroappl.presentation.auth.view;
 
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -19,6 +21,9 @@ import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.ilcarroappl.R;
 import com.example.ilcarroappl.presentation.auth.presentation.AuthPresenter;
+import com.example.ilcarroappl.presentation.mainAct.presentation.MainActivityPresenter;
+import com.example.ilcarroappl.presentation.mainAct.view.MainActView;
+import com.example.ilcarroappl.presentation.mainAct.view.MainActivity;
 import com.example.ilcarroappl.presentation.rent.view.RentFrag;
 
 import java.util.Objects;
@@ -71,6 +76,8 @@ public class AuthFrag extends MvpAppCompatFragment implements AuthView {
     @BindView(R.id.btnRedRegistrationFrame)
     Button btnRegistration;
 
+    InputMethodManager imm;
+
     Unbinder unbinder;
 
     AlertDialog dialog;
@@ -96,6 +103,7 @@ public class AuthFrag extends MvpAppCompatFragment implements AuthView {
             registrationFrame.setVisibility(View.VISIBLE);
             swapBtn.setText("Log in");
         }
+        imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         return view;
     }
 
@@ -110,6 +118,7 @@ public class AuthFrag extends MvpAppCompatFragment implements AuthView {
     void onLoginClick() {
         presenter.onLogin(inputEmailLogin.getText().toString(),
                 inputPasswordLogin.getText().toString());
+        toggleForced();
     }
 
     @Override
@@ -139,6 +148,7 @@ public class AuthFrag extends MvpAppCompatFragment implements AuthView {
         getFragmentManager().beginTransaction()
                 .remove(this)
                 .commit();
+        toggleForced();
     }
 
     @OnClick(R.id.btnRedRegistrationFrame)
@@ -151,6 +161,7 @@ public class AuthFrag extends MvpAppCompatFragment implements AuthView {
         } else {
             Toast.makeText(requireContext(), "Please agree privacy policy", Toast.LENGTH_LONG).show();
         }
+        toggleForced();
     }
 
     @Override
@@ -165,6 +176,11 @@ public class AuthFrag extends MvpAppCompatFragment implements AuthView {
         progressBar.setVisibility(View.GONE);
         loginFrame.setEnabled(true);
         registrationFrame.setEnabled(true);
+    }
+
+    @Override
+    public void toggleForced() {
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
 
     @Override
@@ -187,8 +203,9 @@ public class AuthFrag extends MvpAppCompatFragment implements AuthView {
 
     @Override
     public void showNextView() {
+        getActivity().recreate();
         Objects.requireNonNull(getFragmentManager()).beginTransaction()
                 .remove(this)
-                .commitNow();
+                .commit();
     }
 }

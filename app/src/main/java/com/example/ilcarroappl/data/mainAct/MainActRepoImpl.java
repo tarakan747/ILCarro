@@ -22,4 +22,17 @@ public class MainActRepoImpl implements MainActRepo {
         }
         return null;
     }
+
+    @Override
+    public boolean isLogin() {
+        if (storeProvider.getToken() != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean logOut() {
+        return storeProvider.clearToken();
+    }
 }

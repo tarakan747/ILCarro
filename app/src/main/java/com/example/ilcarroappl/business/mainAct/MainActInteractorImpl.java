@@ -23,6 +23,16 @@ public class MainActInteractorImpl implements MainActInteractor {
         }
     }
 
+    @Override
+    public boolean isLogin() {
+        return repo.isLogin();
+    }
+
+    @Override
+    public boolean logOut() {
+        return repo.logOut();
+    }
+
     private void isLocationValid(Location location) {
         if (location == null) {
             throw new LocationValid("Check internet");
