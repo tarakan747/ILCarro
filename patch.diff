@@ -1,0 +1,24 @@
+From ae264db8eac8ed28eb63db46347313537b743d47 Mon Sep 17 00:00:00 2001
+From: Mikhail Hursky <taraka_39@mail.ru>
+Date: Thu, 27 Feb 2020 03:05:20 +0300
+Subject: [PATCH] 1
+
+---
+ app/src/main/res/layout/activity_main.xml | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+index 338571f..fe226be 100644
+--- a/app/src/main/res/layout/activity_main.xml
++++ b/app/src/main/res/layout/activity_main.xml
+@@ -14,7 +14,6 @@
+         android:layout_width="wrap_content"
+         android:layout_height="match_parent"
+         android:layout_gravity="start"
+-        android:visibility="gone"
+         app:menu="@menu/menu_nav" />
+ 
+     <androidx.constraintlayout.widget.ConstraintLayout
+-- 
+2.25.1.windows.1
+
